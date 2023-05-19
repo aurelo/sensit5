@@ -14,6 +14,7 @@ RUN mvn clean package
 FROM bitnami/tomcat:9.0
 
 ENV ALLOW_EMPTY_PASSWORD=yes
+EXPOSE 8080
 
 # copy war from the first stage
 COPY --from=builder target/sensit5*.war /opt/bitnami/tomcat/webapps/sensit5.war
