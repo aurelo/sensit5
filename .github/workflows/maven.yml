@@ -19,7 +19,7 @@ jobs:
 
     runs-on: ubuntu-latest
     outputs:
-      war_name: ${{ steps.outout_war_file.outputs.war }}
+      war_name: ${{ steps.outout_war_file.outputs.war_name }}
 
     steps:
     - uses: actions/checkout@v3
@@ -32,6 +32,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: outout_war_file
+      id: outout_war_file
 #      run: ls target/*.war | xargs -n 1 basename >> "$GITHUB_OUTPUT"
       run: ls target/*.war | xargs -n 1 basename | xargs echo "war_name=" >> "$GITHUB_OUTPUT"
     - name: store junit test reports
