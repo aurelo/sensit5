@@ -18,6 +18,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    outputs:
+      war_name: ${{ steps.outout_war_file.outputs.war }}
 
     steps:
     - uses: actions/checkout@v3
@@ -29,6 +31,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: outout_war_file
+      run: ls target/*.war | xargs -n 1 basename >> "$GITHUB_OUTPUT"
     - name: store junit test reports
       uses: actions/upload-artifact@v3
       with:
@@ -52,6 +56,13 @@ jobs:
         name: junit_war
     - name: ls_artifacts
       run: ls
-
+    
+  get_output:
+     runs-on: ubuntu-latest
+     needs: build
+     steps:
+     - env:
+         war_name: ${{ steps.outout_war_file.outputs.war }}
+       run: echo "$war_name"
       
 
