@@ -29,6 +29,13 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: store junit test reports
+      uses: actions/upload-artifacts@v3
+      with:
+        name: junit test artifacts + war
+        path: |
+           target/surefire-reports/*.xml
+           target/*.war
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph
