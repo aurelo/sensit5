@@ -1,6 +1,11 @@
 name: On open issue
 
-on: [issues]
+on: 
+  issues:
+    types: 
+      - assigned
+      - opened
+  workflow_dispatch:
     
   
 jobs:
