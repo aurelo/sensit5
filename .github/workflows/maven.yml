@@ -47,7 +47,7 @@ jobs:
     needs: build
     steps:
     - name: check_artifacts
-      uses: actions/downalod-artifact@v3
+      uses: actions/download-artifact@v3
       with:
         name: junit_war
     - name: ls_artifacts
