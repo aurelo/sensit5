@@ -63,8 +63,9 @@ jobs:
      runs-on: ubuntu-latest
      needs: build
      steps:
-     - env:
-         war_name: ${{ steps.outout_war_file.outputs.war }}
-       run: echo "$war_name"
+       - name: output_war_name
+#     - env:
+#         war_name: ${{ steps.outout_war_file.outputs.war }}
+         run: echo "${{needs}}"
       
 
